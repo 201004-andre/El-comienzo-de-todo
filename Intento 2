@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora Simple</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px 5px;
+      font-size: 1.1em;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <h2>Calculadora Simple</h2>
+    <input type="number" id="num1" placeholder="Número 1">
+    <select id="operador">
+      <option value="+">+</option>
+      <option value="-">−</option>
+      <option value="*">×</option>
+      <option value="/">÷</option>
+    </select>
+    <input type="number" id="num2" placeholder="Número 2">
+    <br>
+    <button onclick="calcular()">Calcular</button>
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      const n1 = parseFloat(document.getElementById('num1').value);
+      const n2 = parseFloat(document.getElementById('num2').value);
+      const op = document.getElementById('operador').value;
+      let res = '';
+
+      if (isNaN(n1) || isNaN(n2)) {
+        res = 'Por favor, ingresa dos números válidos.';
+      } else {
+        switch (op) {
+          case '+':
+            res = n1 + n2;
+            break;
+          case '-':
+            res = n1 - n2;
+            break;
+          case '*':
+            res = n1 * n2;
+            break;
+          case '/':
+            res = n2 !== 0 ? n1 / n2 : 'No se puede dividir por cero.';
+            break;
+        }
+      }
+
+      document.getElementById('resultado').textContent = 'Resultado: ' + res;
+    }
+  </script>
+
+</body>
+</html>
